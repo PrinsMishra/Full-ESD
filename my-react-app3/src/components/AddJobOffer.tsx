@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+
 import { toast } from "react-toastify";
 import "../App.css";
 import api from "../api/axios";
 
 function AddJobOffer() {
-  const navigate = useNavigate();
+
 
   const [organisation, setOrganisation] = useState("");
   const [domains, setDomains] = useState<string[]>([]);
@@ -14,12 +14,7 @@ function AddJobOffer() {
   const [maxIntake, setMaxIntake] = useState("");
   // const [isSubmitted, setIsSubmitted] = useState(false); // Removed in favor of toast
 
-  // 🔥 LOGOUT BUTTON HANDLER
-  const handleLogout = () => {
-    localStorage.removeItem("token");   // delete JWT
-    toast.info("Logged out successfully");
-    navigate("/");                      // redirect to login page
-  };
+
 
   const handleCheck = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -70,15 +65,7 @@ function AddJobOffer() {
 
   return (
     <div className="app-main-layout">
-      {/* Top Navigation Bar */}
-      <nav className="top-nav-bar">
-        <button className="nav-btn btn-secondary" onClick={() => navigate("/careers")}>
-          View Careers
-        </button>
-        <button className="nav-btn btn-danger" onClick={handleLogout}>
-          Logout
-        </button>
-      </nav>
+
 
       <div className="full-width-card" style={{ width: "700px" }}> {/* Increased width */}
         <div className="single-panel-form add-job-offer-panel">

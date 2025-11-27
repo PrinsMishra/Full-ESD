@@ -28,10 +28,12 @@ function EmpLogin() {
 
       // 🔥 Save JWT token in localStorage
       localStorage.setItem("token", response.data.token);
+      localStorage.setItem("userEmail", email);
+      localStorage.setItem("userPhoto", "https://ui-avatars.com/api/?name=" + email + "&background=random");
 
       toast.success("Login Successful!");
-      // Redirect to add-offer page
-      navigate("/add-offer");
+      // Redirect to dashboard
+      navigate("/dashboard");
     } catch (err) {
       console.error(err);
       // setError("Invalid email or password");
@@ -82,12 +84,16 @@ function EmpLogin() {
               <GoogleLogin
                 onSuccess={(credentialResponse) => {
                   const googleToken = credentialResponse.credential;
+                  const decoded: any = credentialResponse.credential ? JSON.parse(atob(credentialResponse.credential.split('.')[1])) : {};
 
                   api.post("/auth/google", { token: googleToken })
                     .then((res) => {
                       localStorage.setItem("token", res.data.token);
+                      localStorage.setItem("userEmail", decoded.email);
+                      localStorage.setItem("userPhoto", decoded.picture);
+
                       toast.success("Google Login Successful!");
-                      navigate("/add-offer");
+                      navigate("/dashboard");
                     })
                     .catch(() => {
                       toast.error("Google Login Failed or Not Allowed");
