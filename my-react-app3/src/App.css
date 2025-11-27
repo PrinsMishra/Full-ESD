@@ -1,0 +1,582 @@
+/* --- Global Variables & Reset --- */
+:root {
+    --primary-color: #6a4ff5;
+    /* Purple for the button/accents */
+    --background-color: #f0f2f5;
+    /* Light grey background */
+    --card-background: #ffffff;
+    --text-color: #333;
+    --light-text: #666;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /* Using system font stack */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* --- Main Layout Container --- */
+.app-main-layout {
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* --- Login Card Container --- */
+.login-container {
+    display: flex;
+    width: 900px;
+    height: 600px;
+    background-color: var(--card-background);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* --- Left Panel: Form Section --- */
+.login-form-panel {
+    flex: 1;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 14px;
+    color: var(--light-text);
+    margin-bottom: 50px;
+}
+
+.login-form-panel h1 {
+    font-size: 36px;
+    color: var(--text-color);
+    line-height: 1.1;
+    margin-bottom: 10px;
+}
+
+.tagline {
+    color: var(--light-text);
+    font-size: 14px;
+    margin-bottom: 40px;
+}
+
+/* --- Form Inputs --- */
+.login-form input[type="email"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 15px 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.login-form input:focus {
+    border-color: var(--primary-color);
+}
+
+/* --- Options (Remember Me and Forgot Password) --- */
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    font-size: 13px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    color: var(--light-text);
+    cursor: pointer;
+}
+
+/* Custom Checkbox Styling */
+.remember-me input[type="checkbox"] {
+    /* Hide default checkbox */
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.remember-me span {
+    position: relative;
+    padding-left: 20px;
+}
+
+.remember-me span::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 12px;
+    height: 12px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 3px;
+    transition: all 0.2s;
+}
+
+.remember-me input[type="checkbox"]:checked+span::before {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.remember-me input[type="checkbox"]:checked+span::after {
+    /* Simple checkmark */
+    content: '\2713';
+    position: absolute;
+    left: 1px;
+    top: 0;
+    font-size: 10px;
+    color: white;
+    font-weight: bold;
+}
+
+.forgot-password {
+    color: var(--light-text);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.forgot-password:hover {
+    color: var(--primary-color);
+}
+
+/* --- Sign In Button --- */
+.sign-in-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.sign-in-btn:hover {
+    background-color: #5b3ce0;
+    /* Slightly darker purple */
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+/* --- Right Panel: Illustration --- */
+.login-illustration-panel {
+    flex: 1;
+    /* !!! MAKE SURE THIS PATH IS CORRECT IN YOUR REACT PUBLIC FOLDER OR ASSET IMPORT !!! */
+    background-image: url('erpimage.webp');
+    background-color: var(--primary-color);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 0 20px 20px 0;
+}
+
+/* --- Add Job Offer Specific Styles --- */
+/* --- Add Job Offer Specific Styles (New/Updated) --- */
+
+/* Adjusting the form panel padding for a longer form (same as before) */
+.add-job-offer-panel {
+    padding: 40px 60px;
+}
+
+/* Base style for all inputs in the job offer form to match the login style */
+.job-offer-form input[type="text"],
+.job-offer-form input[type="number"],
+/* Also adding the inputs from the login page to be consistent */
+.login-form input[type="email"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 15px 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.job-offer-form input:focus {
+    border-color: var(--primary-color);
+}
+
+/* Container for Checkbox Groups (Domains/Specialisations) */
+.form-group-container {
+    margin-bottom: 20px;
+}
+
+.group-title {
+    font-weight: bold;
+    color: var(--text-color);
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.checkbox-group {
+    display: flex;
+    gap: 20px;
+}
+
+/* Styling for the custom checkbox labels */
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--light-text);
+}
+
+.checkbox-label input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.full-width-card {
+    display: flex;
+    width: 550px;
+    /* Adjust this width if needed */
+    height: auto;
+    background-color: var(--card-background);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.single-panel-form {
+    width: 100%;
+    padding: 60px;
+    /* Or 40px 60px if you need less vertical padding */
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Careers Page Styles --- */
+.careers-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.careers-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.careers-header h1 {
+    font-size: 36px;
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+
+.careers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    width: 100%;
+}
+
+.career-card {
+    background-color: var(--card-background);
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    border: 1px solid transparent;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.career-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(106, 79, 245, 0.15);
+    border-color: var(--primary-color);
+}
+
+.career-card h3 {
+    color: var(--text-color);
+    margin-bottom: 15px;
+    font-size: 22px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+.career-info-row {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: var(--light-text);
+    line-height: 1.6;
+}
+
+.career-info-row strong {
+    color: var(--text-color);
+    font-weight: 600;
+    margin-right: 5px;
+}
+
+.no-offers {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 18px;
+    color: var(--light-text);
+    padding: 40px;
+}
+
+/* Responsive Grid */
+@media (max-width: 1024px) {
+    .careers-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .careers-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- Balanced Careers Page Styles --- */
+
+/* Header */
+.careers-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px;
+}
+
+.careers-header h1 {
+    font-size: 36px;
+    color: var(--primary-color);
+    /* Purple Title */
+    margin-bottom: 10px;
+}
+
+.careers-header .tagline {
+    color: var(--light-text);
+    font-size: 16px;
+}
+
+/* Card Styling */
+.career-card {
+    background-color: var(--card-background);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border: 1px solid #eee;
+    border-top: 3px solid var(--primary-color);
+    /* Subtle accent */
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.career-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(106, 79, 245, 0.15);
+    /* Colored shadow */
+    border-color: #e0e0e0;
+}
+
+.career-card h3 {
+    color: var(--text-color);
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: 700;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+/* Tag Badges (Pastel) */
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.tag-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.tag-domain {
+    background-color: #f3f0ff;
+    /* Very Light Purple */
+    color: #6a4ff5;
+    /* Primary Purple */
+    border: 1px solid #e0d8ff;
+}
+
+.tag-specialisation {
+    background-color: #e3f2fd;
+    /* Very Light Blue */
+    color: #0288d1;
+    /* Darker Blue */
+    border: 1px solid #bbdefb;
+}
+
+/* Stat Row */
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #f5f5f5;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #999;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.stat-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+/* --- Professional Add Job Offer Styles --- */
+
+/* Top Navigation Bar */
+.top-nav-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    background-color: transparent; /* Or white if you prefer a solid bar */
+    z-index: 100;
+}
+
+.nav-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.btn-secondary {
+    background-color: white;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background-color: #f3f0ff;
+}
+
+.btn-danger {
+    background-color: #ffebee;
+    color: #d32f2f;
+    border: 1px solid #ffcdd2;
+}
+
+.btn-danger:hover {
+    background-color: #ffcdd2;
+}
+
+/* Form Structure */
+.form-section {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.form-section:last-child {
+    border-bottom: none;
+}
+
+.section-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.section-title::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 16px;
+    background-color: var(--primary-color);
+    margin-right: 10px;
+    border-radius: 2px;
+}
+
+/* Chip Checkboxes */
+.chip-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.chip-label {
+    cursor: pointer;
+    position: relative;
+}
+
+.chip-label input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.chip-text {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #f5f5f5;
+    border-radius: 20px;
+    font-size: 14px;
+    color: var(--light-text);
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.chip-label input[type="checkbox"]:checked + .chip-text {
+    background-color: #f3f0ff;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    font-weight: 600;
+    box-shadow: 0 2px 5px rgba(106, 79, 245, 0.15);
+}
+
+.chip-label:hover .chip-text {
+    background-color: #eee;
+}
